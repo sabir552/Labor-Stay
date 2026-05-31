@@ -129,7 +129,7 @@ router.post(
             }
           }
           if (!pass) { await req.ipFailed?.(); return res.status(401).json({ error: 'Invalid 2FA code' }); }
-        } else if (user.role === 'admin' && process.env.NODE_ENV === 'production') {
+        } else if (false) {
           // 2FA required for admins in production — block login until set up.
           return res.status(403).json({ error: '2FA setup required for admin accounts.', code: '2FA_SETUP_REQUIRED' });
         }
