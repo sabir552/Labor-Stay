@@ -1,6 +1,5 @@
 import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
 import DashboardLayout from '../../components/layout/DashboardLayout';
 import OwnerHome from './OwnerHome';
 import MyCamps from './MyCamps';
@@ -29,65 +28,63 @@ import Messages from '../worker/Messages';
 import Notifications from '../worker/Notifications';
 
 export default function OwnerRoutes() {
-  const { t } = useTranslation();
-
   const items = [
-    { label: t('owner.dashboard'), path: '/owner', icon: '📊' },
-    { label: t('owner.myCamps'), path: '/owner/camps', icon: '🏕️' },
-    { label: t('owner.bookingRequests'), path: '/owner/bookings', icon: '📅' },
-    { label: 'Occupancy Map', path: '/owner/occupancy', icon: '🗺️' },
-    { label: 'Occupancy Calendar', path: '/owner/occupancy-calendar', icon: '📆' },
-    { label: t('owner.earnings'), path: '/owner/earnings', icon: '💰' },
-    { label: 'Catering', path: '/owner/catering', icon: '🍽️' },
-    { label: 'Transport', path: '/owner/transport', icon: '🚌' },
-    { label: 'Housekeeping', path: '/owner/housekeeping', icon: '🧹' },
-    { label: 'Maintenance', path: '/owner/maintenance', icon: '🔧' },
-    { label: 'Visitors', path: '/owner/visitors', icon: '👤' },
-    { label: 'Staff', path: '/owner/staff', icon: '👷' },
-    { label: 'Shifts', path: '/owner/shifts', icon: '⏰' },
-    { label: 'Payroll', path: '/owner/payroll', icon: '💵' },
-    { label: 'Utilities', path: '/owner/utilities', icon: '⚡' },
-    { label: 'Access Control', path: '/owner/access', icon: '🔐' },
-    { label: 'CCTV', path: '/owner/cctv', icon: '📹' },
-    { label: 'Service Requests', path: '/owner/requests', icon: '📋' },
-    { label: 'Documents', path: '/owner/documents', icon: '📁' },
-    { label: 'Messages', path: '/owner/messages', icon: '💬' },
-    { label: 'Notifications', path: '/owner/notifications', icon: '🔔' },
-    { label: 'Profile', path: '/owner/profile', icon: '👤' },
+    { to: '/owner', label: 'Dashboard', icon: '📊', end: true },
+    { to: '/owner/camps', label: 'My Camps', icon: '🏕️' },
+    { to: '/owner/bookings', label: 'Bookings', icon: '📅' },
+    { to: '/owner/occupancy', label: 'Occupancy Map', icon: '🗺️' },
+    { to: '/owner/occupancy-calendar', label: 'Occupancy Calendar', icon: '📆' },
+    { to: '/owner/earnings', label: 'Earnings', icon: '💰' },
+    { to: '/owner/catering', label: 'Catering', icon: '🍽️' },
+    { to: '/owner/transport', label: 'Transport', icon: '🚌' },
+    { to: '/owner/housekeeping', label: 'Housekeeping', icon: '🧹' },
+    { to: '/owner/maintenance', label: 'Maintenance', icon: '🔧' },
+    { to: '/owner/visitors', label: 'Visitors', icon: '👤' },
+    { to: '/owner/staff', label: 'Staff', icon: '👷' },
+    { to: '/owner/shifts', label: 'Shifts', icon: '⏰' },
+    { to: '/owner/payroll', label: 'Payroll', icon: '💵' },
+    { to: '/owner/utilities', label: 'Utilities', icon: '⚡' },
+    { to: '/owner/access', label: 'Access Control', icon: '🔐' },
+    { to: '/owner/cctv', label: 'CCTV', icon: '📹' },
+    { to: '/owner/requests', label: 'Service Requests', icon: '📋' },
+    { to: '/owner/documents', label: 'Documents', icon: '📁' },
+    { to: '/owner/messages', label: 'Messages', icon: '💬' },
+    { to: '/owner/notifications', label: 'Notifications', icon: '🔔' },
+    { to: '/owner/profile', label: 'Profile', icon: '👤' },
   ];
 
   return (
     <Routes>
-      <Route element={<DashboardLayout title={t('owner.dashboard')} items={items} />}>
-        <Route index                            element={<OwnerHome />} />
-        <Route path="camps"                     element={<MyCamps />} />
-        <Route path="camps/new"                 element={<CampForm />} />
-        <Route path="camps/:id/edit"            element={<CampForm />} />
-        <Route path="camps/:id/rooms"           element={<CampRooms />} />
-        <Route path="bookings"                  element={<OwnerBookingsList />} />
-        <Route path="bookings/:id"              element={<OwnerBookingDetail />} />
-        <Route path="occupancy"                 element={<OccupancyMap />} />
-        <Route path="occupancy-calendar"        element={<OccupancyCalendar />} />
-        <Route path="earnings"                  element={<Earnings />} />
-        <Route path="catering"                  element={<CateringManagement />} />
-        <Route path="transport"                 element={<TransportManagement />} />
-        <Route path="housekeeping"              element={<HousekeepingManagement />} />
-        <Route path="maintenance"               element={<MaintenanceManagement />} />
-        <Route path="visitors"                  element={<VisitorManagement />} />
-        <Route path="staff"                     element={<StaffManagement />} />
-        <Route path="shifts"                    element={<ShiftScheduler />} />
-        <Route path="payroll"                   element={<PayrollManagement />} />
-        <Route path="utilities"                 element={<UtilityTracking />} />
-        <Route path="access"                    element={<AccessControl />} />
-        <Route path="cctv"                      element={<CCTVManagement />} />
-        <Route path="requests"                  element={<RequestsManagement />} />
-        <Route path="documents"                 element={<DocumentsVault />} />
-        <Route path="notification-settings"     element={<NotificationSettings />} />
-        <Route path="messages"                  element={<Messages />} />
-        <Route path="messages/:conversationId"  element={<Messages />} />
-        <Route path="notifications"             element={<Notifications />} />
-        <Route path="profile"                   element={<OwnerProfile />} />
-        <Route path="*"                         element={<Navigate to="/owner" replace />} />
+      <Route element={<DashboardLayout title="Owner Dashboard" items={items} />}>
+        <Route index element={<OwnerHome />} />
+        <Route path="camps" element={<MyCamps />} />
+        <Route path="camps/new" element={<CampForm />} />
+        <Route path="camps/:id/edit" element={<CampForm />} />
+        <Route path="camps/:id/rooms" element={<CampRooms />} />
+        <Route path="bookings" element={<OwnerBookingsList />} />
+        <Route path="bookings/:id" element={<OwnerBookingDetail />} />
+        <Route path="occupancy" element={<OccupancyMap />} />
+        <Route path="occupancy-calendar" element={<OccupancyCalendar />} />
+        <Route path="earnings" element={<Earnings />} />
+        <Route path="catering" element={<CateringManagement />} />
+        <Route path="transport" element={<TransportManagement />} />
+        <Route path="housekeeping" element={<HousekeepingManagement />} />
+        <Route path="maintenance" element={<MaintenanceManagement />} />
+        <Route path="visitors" element={<VisitorManagement />} />
+        <Route path="staff" element={<StaffManagement />} />
+        <Route path="shifts" element={<ShiftScheduler />} />
+        <Route path="payroll" element={<PayrollManagement />} />
+        <Route path="utilities" element={<UtilityTracking />} />
+        <Route path="access" element={<AccessControl />} />
+        <Route path="cctv" element={<CCTVManagement />} />
+        <Route path="requests" element={<RequestsManagement />} />
+        <Route path="documents" element={<DocumentsVault />} />
+        <Route path="notification-settings" element={<NotificationSettings />} />
+        <Route path="messages" element={<Messages />} />
+        <Route path="messages/:conversationId" element={<Messages />} />
+        <Route path="notifications" element={<Notifications />} />
+        <Route path="profile" element={<OwnerProfile />} />
+        <Route path="*" element={<Navigate to="/owner" replace />} />
       </Route>
     </Routes>
   );
